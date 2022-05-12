@@ -1,6 +1,6 @@
 {
     "name": "vuphuong87/omnipay-shopeepay",
-    "description": "ShopeePay Payment gateway for Omnipay payment processing library",
+    "description": "Shopeepay Payment gateway for Omnipay payment processing library",
     "keywords": [
         "gateway",
         "merchant",
@@ -24,6 +24,6 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay\\ShopeePay\\" : "src/" }
+        "psr-4": { "Omnipay\\Shopeepay\\" : "src/" }
     }
 }

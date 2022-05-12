@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Omnipay\ShopeePay\Message;
+namespace Omnipay\Shopeepay\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 
-use Omnipay\ShopeePay\Message\QueryResponse;
+use Omnipay\Shopeepay\Message\QueryResponse;
 
 use function GuzzleHttp\json_encode;
 use function GuzzleHttp\json_decode;

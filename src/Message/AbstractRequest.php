@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Omnipay\ShopeePay\Message;
+namespace Omnipay\Shopeepay\Message;
 
 use DateTimeInterface;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Omnipay\ShopeePay;
+namespace Omnipay\Shopeepay;
 
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\AbstractRequest;
-use Omnipay\ShopeePay\Message\PurchaseRequest;
-use Omnipay\ShopeePay\Message\QueryRequest;
-use Omnipay\ShopeePay\Message\CompletePurchaseRequest;
+use Omnipay\Shopeepay\Message\PurchaseRequest;
+use Omnipay\Shopeepay\Message\QueryRequest;
+use Omnipay\Shopeepay\Message\CompletePurchaseRequest;
 
 class Gateway extends AbstractGateway
 {
     public function getName(): string
     {
-        return 'ShopeePay';
+        return 'Shopeepay';
     }
 
     public function getDefaultParameters(): array

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Omnipay\ShopeePay\Message;
+namespace Omnipay\Shopeepay\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 

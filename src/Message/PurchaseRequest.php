@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Omnipay\ShopeePay\Message;
+namespace Omnipay\Shopeepay\Message;
 
 use DateTime;
 use DateTimeZone;
 use Omnipay\Common\Exception\InvalidRequestException;
-use Omnipay\ShopeePay\Message\PurchaseResponse;
+use Omnipay\Shopeepay\Message\PurchaseResponse;
 
 use function GuzzleHttp\json_decode;
 use function GuzzleHttp\json_encode;
