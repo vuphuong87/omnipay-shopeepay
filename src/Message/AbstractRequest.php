@@ -46,9 +46,9 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->setParameter('client_id', $client_id);
     }
 
-    public function getTransactionType(): string
+    public function getTransactionType(): int
     {
-        return '13'; // payment
+        return 13; // payment
     }
 
     public function getPlatformType(): string
