@@ -21,18 +21,18 @@ class Gateway extends AbstractGateway
     {
         return [
             'merchant_ext_id' => '',
-            'store_ext_id' => '',
-            'client_id' => '',
-            'secret_key' => '',
+            'store_ext_id'    => '',
+            'client_id'       => '',
+            'secret_key'      => '',
         ];
     }
 
-    public function getMerchantExId(): string
+    public function getMerchantExtId(): string
     {
         return $this->getParameter('merchant_ext_id');
     }
 
-    public function setMerchantExId(string $merchant_ext_id): self
+    public function setMerchantExtId(string $merchant_ext_id): self
     {
         return $this->setParameter('merchant_ext_id', $merchant_ext_id);
     }

@@ -16,14 +16,14 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return 'VND';
     }
 
-    public function getMerchantExId(): string
+    public function getMerchantExtId(): string
     {
         return $this->getParameter('merchant_ext_id');
     }
 
-    public function setMerchantExId(string $merchantExtId): self
+    public function setMerchantExtId(string $merchant_ext_id): self
     {
-        return $this->setParameter('merchant_ext_id', $merchantExtId);
+        return $this->setParameter('merchant_ext_id', $merchant_ext_id);
     }
 
     public function getStoreExtId(): string
@@ -31,9 +31,9 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->getParameter('store_ext_id');
     }
 
-    public function setStoreExtId(string $storeExtId): self
+    public function setStoreExtId(string $store_ext_id): self
     {
-        return $this->setParameter('store_ext_id', $storeExtId);
+        return $this->setParameter('store_ext_id', $store_ext_id);
     }
 
     public function getClientId(): string
@@ -41,39 +41,19 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->getParameter('client_id');
     }
 
-    public function setClientId(string $clientId): self
+    public function setClientId(string $client_id): self
     {
-        return $this->setParameter('client_id', $clientId);
+        return $this->setParameter('client_id', $client_id);
     }
 
-    public function getTransactionType(): bool
+    public function getTransactionType(): string
     {
-        return $this->getParameter('transactionType');
-    }
-
-    public function setTransactionType(bool $transactionType): self
-    {
-        return $this->setParameter('transactionType', $transactionType);
-    }
-
-    public function getAmount(): ?string
-    {
-        return $this->getParameter('amount');
-    }
-
-    public function setAmount($value): self
-    {
-        return $this->setParameter('amount', $value * 100);
+        return '13'; // payment
     }
 
     public function getPlatformType(): string
     {
-        return $this->getParameter('platformType') ?? 'mweb';
-    }
-
-    public function setPlatformType(string $platformType): self
-    {
-        return $this->setParameter('platformType', $platformType);
+        return 'mweb';
     }
 
     public function setValidityTime(?DateTimeInterface $validityTime): self
@@ -98,12 +78,12 @@ abstract class AbstractRequest extends BaseAbstractRequest
 
     public function getSecretKey(): string
     {
-        return $this->getParameter('secretKey');
+        return $this->getParameter('secret_key');
     }
 
-    public function setSecretKey(string $secretKey): self
+    public function setSecretKey(string $secret_key): self
     {
-        return $this->setParameter('secretKey', $secretKey);
+        return $this->setParameter('secret_key', $secret_key);
     }
 
     public function getEndpoint(): string
@@ -118,7 +98,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
 
     protected function computeSignature(string $rawHash): string
     {
-        return hash_hmac('sha256', $rawHash, $this->getSecretKey(), true);
+        return base64_encode(hash_hmac('sha256', $rawHash, $this->getSecretKey(), true));
     }
 
     protected function buildOrder(array $data): array

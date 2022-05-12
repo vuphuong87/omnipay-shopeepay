@@ -6,8 +6,6 @@ namespace Omnipay\Shopeepay\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 
-use Omnipay\Shopeepay\Message\QueryResponse;
-
 use function GuzzleHttp\json_encode;
 use function GuzzleHttp\json_decode;
 
@@ -28,17 +26,13 @@ class QueryRequest extends AbstractRequest
         );
 
         $order = [
-            'merchant_ext_id'  => $this->getMerchantExId(),
-            'store_ext_id'     => $this->getStoreExtId(),
             'request_id'       => $this->getTransactionId(),
             'reference_id'     => $this->getTransactionId(),
             'transaction_type' => $this->getTransactionType(),
-            'amount'           => $this->getAmount(),
+            'merchant_ext_id'  => $this->getMerchantExtId(),
+            'store_ext_id'     => $this->getStoreExtId(),
+            'amount'           => $this->getAmount() * 100,
         ];
-
-        $order['signature'] = $this->computeSignature(
-            implode('', array_values($order))
-        );
 
         return [
             'order' => $order,
@@ -56,7 +50,7 @@ class QueryRequest extends AbstractRequest
             [
                 'Content-Type'      => 'application/json',
                 'X-Airpay-ClientId' => $this->getClientId(),
-                'X-Airpay-Req-H'    => $this->computeSignature(implode('', array_values($order))),
+                'X-Airpay-Req-H'    => $this->computeSignature($payload),
             ],
             $payload
         )->getBody();

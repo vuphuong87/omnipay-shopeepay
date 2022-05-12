@@ -30,7 +30,7 @@ class QueryResponse extends AbstractResponse
         return true;
     }
 
-    public function getRedirectData()
+    public function getRedirectData(): array
     {
         return $this->data;
     }

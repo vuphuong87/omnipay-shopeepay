@@ -7,10 +7,10 @@ namespace Omnipay\Shopeepay\Message;
 use DateTime;
 use DateTimeZone;
 use Omnipay\Common\Exception\InvalidRequestException;
-use Omnipay\Shopeepay\Message\PurchaseResponse;
 
 use function GuzzleHttp\json_decode;
 use function GuzzleHttp\json_encode;
+use function Symfony\Component\String\s;
 
 class PurchaseRequest extends AbstractRequest
 {
@@ -34,23 +34,19 @@ class PurchaseRequest extends AbstractRequest
 
         $validityTime = $this->getValidityTime() ?: new DateTime('+5 minutes');
         $validityTime->setTimezone(new DateTimeZone(self::TIMEZONE));
-        $validityTime = $validityTime->format('dmY His');
+        $validityTime = $validityTime->getTimestamp();
 
         $order = [
-            'merchant_ext_id'      => $this->getMerchantExId(),
-            'store_ext_id'         => $this->getStoreExtId(),
             'request_id'           => $this->getTransactionId(),
-            'payment_reference_id' => $this->getTransactionId(),
-            'amount'               => $this->getAmount(),
+            'amount'               => $this->getAmount() * 100,
             'currency'             => $this->getCurrency(),
-            'expiry_time'          => $validityTime,
-            'return_url'           => $this->getReturnUrl(),
+            'merchant_ext_id'      => $this->getMerchantExtId(),
+            'store_ext_id'         => $this->getStoreExtId(),
+            'payment_reference_id' => $this->getTransactionId(),
             'platform_type'        => $this->getPlatformType(),
+            'return_url'           => $this->getReturnUrl(),
+            'expiry_time'          => $validityTime,
         ];
-
-        $order['signature'] = $this->computeSignature(
-            implode('', array_values($order))
-        );
 
         return [
             'order' => $order,
@@ -68,7 +64,7 @@ class PurchaseRequest extends AbstractRequest
             [
                 'Content-Type'      => 'application/json',
                 'X-Airpay-ClientId' => $this->getClientId(),
-                'X-Airpay-Req-H'    => $this->computeSignature(implode('', array_values($order))),
+                'X-Airpay-Req-H'    => $this->computeSignature($payload),
             ],
             $payload
         )->getBody();

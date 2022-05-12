@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Omnipay\Shopeepay\Message;
 
-use Omnipay\Shopeepay\Message\CompletePurchaseResponse;
 
 class CompletePurchaseRequest extends AbstractRequest
 {
