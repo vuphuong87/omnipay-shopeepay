@@ -1,0 +1,29 @@
+{
+    "name": "vuphuong87/omnipay-shopeepay",
+    "description": "ShopeePay Payment gateway for Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "shopeepay"
+    ],
+    "type": "library",
+    "require": {
+        "php": "^7.3|^8",
+        "ext-json": "*",
+        "omnipay/common": "^3.0",
+        "cakephp/chronos": "^1.1",
+        "php-http/guzzle6-adapter": "^1.1|^2",
+        "symfony/string": "^5.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vu Phuong",
+            "email": "vuphuong87@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\ShopeePay\\" : "src/" }
+    }
+}
