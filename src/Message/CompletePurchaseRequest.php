@@ -11,7 +11,8 @@ class CompletePurchaseRequest extends AbstractRequest
 {
     public function getData(): array
     {
-        $request = $this->httpRequest->request->all();
+        $request = $this->httpRequest->getContent();
+        $request = json_decode($request, true);
 
         $order = [
             'amount'               => $request['amount'] ? (int)$request['amount'] : null,
